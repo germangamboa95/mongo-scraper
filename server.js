@@ -10,8 +10,8 @@ const app = express();
 app.use(morgan("dev"));
 app.use(routes);
 // Init mongoose 
-mongoose.connect("mongodb://localhost:27017");
-
+mongoose.connect("mongodb://localhost:27017/testicle");
+mongoose.Promise = Promise;  
 
 //  Init Server
 const PORT = process.env.PORT || 3000; 
