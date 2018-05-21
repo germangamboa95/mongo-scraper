@@ -7,6 +7,10 @@ const NoteSchema = new Schema({
     text: {
         type: String,
         required: true
+    },
+    articleId: {
+        type: Schema.Types.ObjectId,
+        required: true
     }
 });
 

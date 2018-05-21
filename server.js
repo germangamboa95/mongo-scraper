@@ -6,12 +6,16 @@ const routes = require('./routes/index')
 //  Init express 
 const app = express(); 
 
+// Body parser
+app.use(bodyParser.json());
+
 // Init Morgan
 app.use(morgan("dev"));
 app.use(routes);
 // Init mongoose 
 mongoose.connect("mongodb://localhost:27017/testicle");
 mongoose.Promise = Promise;  
+
 
 //  Init Server
 const PORT = process.env.PORT || 3000; 
