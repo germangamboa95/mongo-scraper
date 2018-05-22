@@ -52,6 +52,7 @@ export default {
 }
 
 button{
-  margin: 1.25em;
+  margin: 1.25em auto;
+  
 }
 </style>
