@@ -15,7 +15,7 @@ app.use(bodyParser.json());
 app.use(morgan("dev"));
 app.use(routes);
 // Init mongoose 
-const connectUrl = process.env.MONGODB_URI || 'mongodb://localhost:27017/testicle'
+const connectUrl = process.env.MONGODB_URI || 'mongodb://localhost:27017/test'
 mongoose.connect(connectUrl);
 mongoose.Promise = Promise;  
 app.use('/',serveStatic(__dirname + "/dist"));
