@@ -18,5 +18,8 @@ export default {
     },
     addNote(text, id){
         return Api().post('/addNote', {text: text, articleId: id})
+    },
+    deleteNote(id){
+        return Api().delete('/deleteNote/'+id);
     }
 }

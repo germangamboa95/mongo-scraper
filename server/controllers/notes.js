@@ -9,7 +9,8 @@ const Notes = {
         .catch(err => res.json(err));
     },
     removeNote:function(req, res) {
-        const noteId = req.body._id; 
+        const noteId = req.params.id; 
+     
         db.Notes.deleteOne({_id: noteId})
         .then(result => db.SavedArticle.findOneAndUpdate({}, { $pull: {notes: noteId}}, { new: true }))
         .then(result => res.json(result))

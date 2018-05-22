@@ -10,7 +10,7 @@ router.post('/saveArticle', Articles.saveOne)
 router.put('/removeSavedArticle', Articles.removeOne)
 
 router.post('/addNote', Notes.addNote)
-router.delete('/deleteNote', Notes.removeNote)
+router.delete('/deleteNote/:id', Notes.removeNote)
 
 router.get('/savedArticles', Articles.loadSaved)
 module.exports = router;

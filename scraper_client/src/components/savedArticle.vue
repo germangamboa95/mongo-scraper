@@ -15,7 +15,7 @@
           <div v-if="savedNotes.length > 0">
           <h5>Saved Notes</h5>
           <ul>
-              <li v-for="noter in savedNotes" :key="noter._id">{{noter.text}}</li>
+              <li v-for="noter in savedNotes" :key="noter._id">{{noter.text}} <span class="my-btn" :value="noter._id" v-on:click="deleteComment(noter._id)"><i class="material-icons">cancel</i></span></li>
           </ul>
           </div>
           
@@ -45,8 +45,15 @@ export default {
   methods: {
     async deleteArticle() {
       const res = await userServices.deleteOne(this.article._id);
-      console.log(res);
+ 
       this.$emit("deleted", this.article._id);
+    },
+    async deleteComment(data) {
+        const res = await userServices.deleteNote(data);
+        console.log(res); 
+        console.log(data);
+        this.$emit("noteAdded", this.article._id);
+
     },
     async addNote() {
       const res = await userServices.addNote(this.note, this.article._id);
@@ -57,7 +64,7 @@ export default {
      this.savedNotes= this.notes.filter(
         note => note.articleId === this.article._id
       );
-      console.log(this.savedNotes);
+   
       
     }
   },
@@ -83,4 +90,9 @@ a {
 .date {
   margin: 0 0 0.5em 1em;
 }
+.my-btn{
+    cursor: pointer;
+    border-radius: 50%;
+}
+
 </style>

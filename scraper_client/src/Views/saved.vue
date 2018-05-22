@@ -26,7 +26,6 @@ export default {
   methods: {
     async loadSaved() {
       const foo = await userServices.getSaved();
-      console.log(foo)
       this.articles = foo.data[0].article.reverse();
       this.notes = foo.data[0].notes.reverse();
    
