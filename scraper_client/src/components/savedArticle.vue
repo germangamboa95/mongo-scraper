@@ -7,8 +7,9 @@
 
           <a v-bind:href="article.link" target="_blank">Read More...</a>
           <div></div>
-          <button v-if="!flag" v-on:click="saveArticle" class="btn-floating btn-large waves-effect waves-light red"><i class="material-icons">save</i></button>
-          <div v-else>Article Saved!</div>
+          <button v-on:click="deleteArticle" class="btn-floating btn-large waves-effect waves-light red"><i class="material-icons">delete_forever</i></button>
+
+  
       </div>
       
   </div>
@@ -18,18 +19,13 @@
 import userServices from "../services/userServices.js";
 
 export default {
-  name: "articler",
+  name: "articlerSaved",
   props: ["article"],
-  data(){
-      return{
-          flag: false
-      }
-  },
   methods: {
-      async saveArticle() { 
-          const res = await userServices.saveOne(this.article._id);
-          this.flag = true;
-          console.log(res);
+      async deleteArticle(){
+          const res = await userServices.deleteOne(this.article._id);
+          console.log(res); 
+          this.$emit('deleted', this.article._id)
       }
   }
 };

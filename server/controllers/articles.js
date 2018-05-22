@@ -21,7 +21,7 @@ const Articles = {
             writeErrors = err.result.getWriteErrorCount();
         }
 
-        insertResults.articles = await db.Articles.find({})
+        insertResults.articles = await db.Articles.find({}, null, {sort: {timeStamps: -1}})
         insertResults.insterted = insterted;
         insertResults.writeErrors = writeErrors;
  
@@ -30,7 +30,7 @@ const Articles = {
     }, 
     
     loadStale: async function(req, res) {
-        res.json(await db.Articles.find({}));
+        res.json(await db.Articles.find({}, null, {sort: {timeStamps: -1}}));
     },
 
     saveOne: async function(req, res) {
