@@ -15,5 +15,8 @@ export default {
     },
     deleteOne(data){
         return Api().put('/removeSavedArticle', {article_id: data})
+    },
+    addNote(text, id){
+        return Api().post('/addNote', {text: text, articleId: id})
     }
 }

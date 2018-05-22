@@ -1,7 +1,8 @@
 <template>
   <div id="app">
       <h3 v-if="deletedCount > 0">Deleted: {{deletedCount}} articles!</h3>
-      <articlerSaved @deleted="deletedOne" v-for="article in articles" :article="article" :key="article.id" />
+     
+      <articlerSaved @noteAdded="noteAdded" @deleted="deletedOne" v-for="article in articles" :article="article" v-bind:notes="notes" :key="article._id" />
   </div>
 </template>
 
@@ -17,7 +18,9 @@ export default {
   data() {
     return {
       articles: [],
-      deletedCount: 0
+      notes: [],
+      deletedCount: 0,
+      foo: 0
     };
   },
   methods: {
@@ -25,11 +28,16 @@ export default {
       const foo = await userServices.getSaved();
       console.log(foo)
       this.articles = foo.data[0].article.reverse();
+      this.notes = foo.data[0].notes.reverse();
    
     },
     deletedOne(){
       this.loadSaved();
       this.deletedCount++;
+    },
+    async noteAdded(){
+      this.loadSaved();
+      this.foo++;
     }
   },
   created() {

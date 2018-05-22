@@ -1,7 +1,7 @@
 <template>
   <div id="app">
       <div class="card center-align">
-          <div class="date">Date: {{article.timeStamps}}</div>
+          <div class="date">{{Date(article.timeStamps)}}</div>
           <h5>{{article.headline}}</h5>
           <p>{{article.summary}}</p>
 
